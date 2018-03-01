@@ -40,7 +40,17 @@ class LinkedList {
         } 
     }
 
-
+    insertAt(item, position) {
+        let temp = this.head;
+        let count = 1;
+        while(temp.next !== null){
+            count++
+            if(count === position){
+               return temp.next = new _Node(item, temp.next)
+            }
+            temp = temp.next
+        }
+    }
 
     insertLast(item){
         if(this.head === null){
@@ -101,8 +111,9 @@ function main(){
     sll.insertFirst('Tauhida');
     sll.remove('Squirrel');
     //sll.insertBefore('joi','Apollo');
-    sll.insertAfter('hi', 'Apollo');
-    console.log(sll.find('Apollo'));
+    //sll.insertAfter('hi', 'Apollo');
+    sll.insertAt('yo', 1);
+    console.log(sll.find('yo'));
 
 
 }
@@ -119,4 +130,20 @@ main();
     Keeps running and we move down the SLL from Tauhida to Apollo
     Once we get to the node that we want to insert after (Apollo = Apollo)
     then we create our new Node, new node takes the data and newNode.next is equal to Apollo.next (old value) which refers to Boomer
+    */
+
+    /*
+    insertAt(Z, 2)
+
+    SLL = A (1), B (2), C (3)
+    after insertion
+    similar to insertBefore (shifting down) - A.next now refers to Z
+    Z.next which now refers to previous A.next = B
+
+    similar to insertBefore - 
+    SLL = A(1), Z (2), B(3), C(4)
+
+    can no longer rely on found node; position only
+    keep swimming until position matches count;
+    then insert new node as temp (previous node) next and grab what was temp's next as my own new next
     */
