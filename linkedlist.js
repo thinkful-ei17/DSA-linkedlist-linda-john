@@ -118,9 +118,9 @@ function main(){
     // sll.remove('Squirrel');
     //sll.insertBefore('joi','Apollo');
     //sll.insertAfter('hi', 'Apollo');
-    sll.insertAt('yo', 4);
+    // sll.insertAt('yo', 4);
     // console.log(sll.find('Boomer'));
-    console.log(findPrevious(sll,'Husker'))
+    console.log(reverse(sll))
 
 }
 
@@ -157,12 +157,53 @@ function findPrevious(sll,currentnode){
     let found = sll.find(currentnode);
     let temp = sll.head;
     while(temp.next !== found){ 
-        console.log('here im temp',temp)
-        if(temp.next === found){
-            return temp.next;
-        }
         temp = temp.next
     }
+    if(temp.next === found){
+        return temp;
+    }
+}
+
+function findLast(sll){
+    let temp = sll.head;
+    while(temp.next !== null){ 
+        temp = temp.next
+    }
+    if(temp.next === null){
+        return temp;
+    }
+}
+
+function WhatDoesThisProgramDo(lst){
+    let current = lst.head;
+    while(current !== null){
+        let newNode = current;
+        while (newNode.next !== null) {
+            if (newNode.next.value === current.value) {
+                newNode.next = newNode.next.next;
+            }
+            else{
+                newNode = newNode.next;
+            }
+        }
+        current = current.next;
+    }
+}
+
+// The runtime for algorithm is O(n^2), this is a broken program because it returns undefined/nothing 
+function reverse(sll){
+    let temp = sll.head;
+    let previous = null;
+    while(temp.next !== null){
+        // console.log('before',temp.next)
+        previous = temp;
+        temp.next = previous;
+        // temp = temp.next;
+        console.log(previous)
+        // console.log('after',temp)
+    }
+    // console.log(previous)
+    
 }
 
 main();
