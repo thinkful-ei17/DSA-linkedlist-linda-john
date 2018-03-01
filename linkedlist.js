@@ -15,12 +15,30 @@ class LinkedList {
     insertBefore(item,currentNode){
         let found = this.find(currentNode);
         let temp = this.head;
-        while(temp.next !== found){
+        while(temp.next !== found){ //keep moving until you find the node we want to insert before
             temp = temp.next
-        }
+        } //once currentnode is found, next now refers to new node
         temp.next = new _Node(item,found)
 
     }
+
+    insertAfter(item,currentNode){
+        let found = this.find(currentNode); //find current node
+        let temp = this.head;
+        while(temp !== null){ 
+            console.log('in while loop', temp.next);
+            if (found){ //once at currentNode
+                console.log('in if stmt');
+                temp.next = new _Node(item, temp.next); //create new Node after current Node
+                return; //must return to stop loop
+            }
+            temp=temp.next // tells while loop to keep going through linked list 
+            console.log('what is temp');
+        }
+
+    } //once currentnode is found, 
+        
+
     insertLast(item){
         if(this.head === null){
             this.insertFirst(item);
@@ -78,9 +96,11 @@ function main(){
     sll.insertFirst('Boomer');
     sll.insertFirst('Apollo');
     sll.insertFirst('Tauhida');
-    sll.remove('Squirrel')
-    sll.insertBefore('joi','Helo')
-    console.log(sll.find('Boomer'));
+    sll.remove('Squirrel');
+    sll.insertBefore('joi','Helo');
+    sll.insertAfter('hi', 'Helo');
+    console.log(sll.find('Helo'));
+
 
 }
 
