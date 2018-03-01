@@ -115,13 +115,54 @@ function main(){
     sll.insertFirst('Boomer');
     sll.insertFirst('Apollo');
     sll.insertFirst('Tauhida');
-    sll.remove('Squirrel');
+    // sll.remove('Squirrel');
     //sll.insertBefore('joi','Apollo');
     //sll.insertAfter('hi', 'Apollo');
     sll.insertAt('yo', 4);
-    console.log(sll.find('Boomer'));
+    // console.log(sll.find('Boomer'));
+    console.log(findPrevious(sll,'Husker'))
 
+}
 
+function display(sll){
+    // console.log(sll.head)
+    let currNode = sll.head; 
+    console.log(sll.head)
+    while (currNode.next !== null) { 
+        console.log(currNode.next); 
+        currNode = currNode.next; 
+    }
+}
+
+function size(sll){
+    let currNode = sll.head; 
+    let count = 1;
+    while (currNode.next !== null) { 
+        count++; 
+        currNode = currNode.next;
+    }
+    console.log(count);
+    return count
+}
+
+function isEmpty(sll){
+    if(sll.head !== null){
+        return 'This is not empty'
+    } else {
+        return 'The list is empty'
+    }
+}
+
+function findPrevious(sll,currentnode){
+    let found = sll.find(currentnode);
+    let temp = sll.head;
+    while(temp.next !== found){ 
+        console.log('here im temp',temp)
+        if(temp.next === found){
+            return temp.next;
+        }
+        temp = temp.next
+    }
 }
 
 main();
