@@ -15,11 +15,16 @@ class LinkedList {
     insertBefore(item,currentNode){
         let found = this.find(currentNode);
         let temp = this.head;
-        while(temp.next !== found){ //keep moving until you find the node we want to insert before
-            temp = temp.next
-        } //once currentnode is found, next now refers to new node
-        temp.next = new _Node(item,found)
-
+        if(found == temp){
+            this.insertFirst(item);
+        }
+        else {
+            console.log('hi i am else');
+            while(temp.next !== found){ //keep moving until you find the node we want to insert before
+                temp = temp.next
+            } //once currentnode is found, next now refers to new node
+            temp.next = new _Node(item,found)
+        } 
     }
 
     insertAfter(item,currentNode){
@@ -97,8 +102,8 @@ function main(){
     sll.insertFirst('Apollo');
     sll.insertFirst('Tauhida');
     sll.remove('Squirrel');
-    sll.insertBefore('joi','Helo');
-    sll.insertAfter('hi', 'Helo');
+    sll.insertBefore('joi','Apollo');
+   // sll.insertAfter('hi', 'Helo');
     console.log(sll.find('Tauhida'));
 
 
