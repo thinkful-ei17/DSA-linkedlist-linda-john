@@ -19,7 +19,6 @@ class LinkedList {
             this.insertFirst(item);
         }
         else {
-            console.log('hi i am else');
             while(temp.next !== found){ //keep moving until you find the node we want to insert before
                 temp = temp.next
             } //once currentnode is found, next now refers to new node
@@ -28,21 +27,20 @@ class LinkedList {
     }
 
     insertAfter(item,currentNode){
-        let found = this.find(currentNode); //find current node
+        let found = this.find(currentNode);
         let temp = this.head;
-        while(temp !== null){ 
-            console.log('in while loop', temp.next);
-            if (found){ //once at currentNode
-                console.log('in if stmt');
-                temp.next = new _Node(item, temp.next); //create new Node after current Node
-                return; //must return to stop loop
-            }
+        if(found.next == null){
+            this.insertLast(item);
         }
-        temp=temp.next // tells while loop to keep going through linked list 
-        console.log('what is temp');
+        else {
+            while(temp.next !== found.next){ //keep moving until you find the node we want
+                temp = temp.next
+            } //once currentnode is found, next now refers to new node
+         temp.next = new _Node(item, temp.next)
+        } 
+    }
 
-    } //once currentnode is found, 
-        
+
 
     insertLast(item){
         if(this.head === null){
@@ -102,11 +100,23 @@ function main(){
     sll.insertFirst('Apollo');
     sll.insertFirst('Tauhida');
     sll.remove('Squirrel');
-    sll.insertBefore('joi','Apollo');
-   // sll.insertAfter('hi', 'Helo');
-    console.log(sll.find('Tauhida'));
+    //sll.insertBefore('joi','Apollo');
+    sll.insertAfter('hi', 'Apollo');
+    console.log(sll.find('Apollo'));
 
 
 }
 
 main();
+
+    /*
+    Note to Self
+    insertAfter('hi', 'Apollo') - insert hi after Apollo
+    found = Apollo
+    temp = Tauhida (to start, at HEAD of SLL)
+    if (checks if Apollo.next is equal to null) (if true we know it is at END of SLL, however in this instance, this is false)
+    else (while loop checks if Tauhida.next which is currentluy Apollo is equal to Apollo.next which is currently equal to Boomer)
+    Keeps running and we move down the SLL from Tauhida to Apollo
+    Once we get to the node that we want to insert after (Apollo = Apollo)
+    then we create our new Node, new node takes the data and newNode.next is equal to Apollo.next (old value) which refers to Boomer
+    */
