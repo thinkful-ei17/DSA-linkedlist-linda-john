@@ -32,9 +32,9 @@ class LinkedList {
                 temp.next = new _Node(item, temp.next); //create new Node after current Node
                 return; //must return to stop loop
             }
-            temp=temp.next // tells while loop to keep going through linked list 
-            console.log('what is temp');
         }
+        temp=temp.next // tells while loop to keep going through linked list 
+        console.log('what is temp');
 
     } //once currentnode is found, 
         
@@ -99,7 +99,7 @@ function main(){
     sll.remove('Squirrel');
     sll.insertBefore('joi','Helo');
     sll.insertAfter('hi', 'Helo');
-    console.log(sll.find('Helo'));
+    console.log(sll.find('Tauhida'));
 
 
 }
