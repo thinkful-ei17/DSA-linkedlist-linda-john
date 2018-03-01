@@ -50,6 +50,12 @@ class LinkedList {
             }
             temp = temp.next
         }
+        if(temp.next == null){ //if added to end
+            this.insertLast(item);
+        }
+        if(position === 0){ //if added at start
+            this.insertFirst(item);
+        }
     }
 
     insertLast(item){
@@ -112,8 +118,8 @@ function main(){
     sll.remove('Squirrel');
     //sll.insertBefore('joi','Apollo');
     //sll.insertAfter('hi', 'Apollo');
-    sll.insertAt('yo', 1);
-    console.log(sll.find('yo'));
+    sll.insertAt('yo', 4);
+    console.log(sll.find('Boomer'));
 
 
 }
